@@ -1,0 +1,167 @@
+{
+  "permissions": {
+    "allow": [
+      "*",
+      "Read",
+      "Write",
+      "Edit",
+      "MultiEdit",
+      "Bash",
+      "BashOutput",
+      "KillShell",
+      "WebSearch",
+      "WebFetch",
+      "Task",
+      "Glob",
+      "Grep",
+      "LS",
+      "NotebookRead",
+      "NotebookEdit",
+      "TodoRead",
+      "TodoWrite",
+      "AskUserQuestion",
+      "SlashCommand",
+      "Skill"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Read(*.env)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/secrets/**)",
+      "Read(*.pem)",
+      "Read(**/*.pem)",
+      "Read(*.key)",
+      "Read(**/*.key)",
+      "Read(**/.ssh/id_rsa)",
+      "Read(**/.ssh/id_ed25519)",
+      "Read(/Users/*/ssh/id_rsa)",
+      "Read(/Users/*/ssh/id_ed25519)"
+    ],
+    "ask": [
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(*--force*git push*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -fd*)",
+      "Bash(git clean -f -d*)",
+      "Bash(git rebase*)",
+      "Bash(rm -rf*)",
+      "Bash(rm -r *)"
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "printf '\\033[2m%s@%s \\033[0;36m%s\\033[0m' \"$(whoami)\" \"$(hostname -s)\" \"$(basename \"$(cat | jq -r '.workspace.current_dir')\")\" 2>/dev/null || printf '%s@%s %s' \"$(whoami)\" \"$(hostname -s)\" \"$(pwd | sed 's|.*/||')\""
+  },
+  "alwaysThinkingEnabled": false,
+  "showNextStepsEnabled": false,
+  "suggestionsEnabled": false,
+  "interactivePromptsEnabled": false,
+  "mcpServers": {
+    "playwright": {
+      "url": "http://127.0.0.1:8931/mcp"
+    },
+    "context7": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/context7/index.js"
+      ],
+      "env": {
+        "CONTEXT7_API_KEY": "YOUR_CONTEXT7_API_KEY"
+      }
+    },
+    "snyk": {
+      "command": "snyk",
+      "args": [
+        "--json"
+      ],
+      "env": {
+        "SNYK_TOKEN": "YOUR_SNYK_TOKEN"
+      }
+    },
+    "coderabbitai": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/coderabbitai-mcp/dist/index.js"
+      ],
+      "env": {
+        "GITHUB_PAT": "YOUR_GITHUB_PERSONAL_ACCESS_TOKEN",
+        "CODERABBIT_API_KEY": "YOUR_CODERABBIT_API_KEY"
+      }
+    },
+    "brave-search": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@brave/brave-search-mcp-server/dist/index.js"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "YOUR_BRAVE_API_KEY_HERE"
+      }
+    },
+    "shadcn-ui": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@jpisnice/shadcn-ui-mcp-server/build/index.js"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
+      }
+    },
+    "heroicons": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/heroicons-mcp/build/entry.js"
+      ]
+    },
+    "lucide-icons": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/lucide-icons-mcp/build/entry.js"
+      ]
+    },
+    "storybook": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@storybook/mcp/dist/index.js"
+      ]
+    },
+    "supabase": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@supabase/mcp-server-supabase/dist/transports/stdio.js"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "YOUR_SUPABASE_ACCESS_TOKEN"
+      }
+    },
+    "eslint": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@eslint/mcp/src/mcp-cli.js"
+      ]
+    },
+    "git": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@cyanheads/git-mcp-server/dist/index.js"
+      ]
+    },
+    "vitest": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/@djankies/vitest-mcp/dist/index.js"
+      ]
+    },
+    "github": {
+      "command": "node",
+      "args": [
+        "/Users/USERNAME/.nvm/versions/node/v20.19.5/lib/node_modules/github-mcp-server/dist/index.js"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "YOUR_GITHUB_TOKEN"
+      }
+    }
+  }
+}

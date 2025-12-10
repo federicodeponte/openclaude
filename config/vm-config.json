@@ -1,0 +1,53 @@
+{
+  "enabled": true,
+  "vm": {
+    "host": "YOUR_VM_HOST_IP",
+    "user": "YOUR_USERNAME",
+    "ssh_key": "~/.ssh/google_compute_engine",
+    "connection_timeout": 5
+  },
+  "ports": {
+    "playwright_mcp": 8931,
+    "scaile_dev": 5173,
+    "zola_dev": 5174,
+    "reverse_range_start": 3000,
+    "reverse_range_end": 5010
+  },
+  "projects": {
+    "scaile": {
+      "local_path": "/Users/YOUR_USERNAME/Downloads/your-project",
+      "vm_path": "/home/YOUR_USERNAME/your-project",
+      "port": 5173,
+      "start_command": "npm run dev -- -p 5173",
+      "systemd_service": "scaile-dev"
+    },
+    "zola": {
+      "local_path": "/Users/YOUR_USERNAME/Downloads/another-project",
+      "vm_path": "/home/YOUR_USERNAME/another-project",
+      "port": 5174,
+      "start_command": "npm run dev -- -p 5174",
+      "systemd_service": null
+    }
+  },
+  "services": {
+    "tunnel": {
+      "launchctl_label": "com.playwright.vm-tunnel",
+      "plist_path": "~/Library/LaunchAgents/com.playwright.vm-tunnel.plist"
+    },
+    "sync": {
+      "launchctl_label": "com.sync-to-vm",
+      "plist_path": "~/Library/LaunchAgents/com.sync-to-vm.plist",
+      "script_path": "/Users/YOUR_USERNAME/sync-to-vm.sh"
+    }
+  },
+  "logs": {
+    "sync": "/tmp/sync-to-vm.log",
+    "sync_error": "/tmp/sync-to-vm-error.log",
+    "dev_5173": "/tmp/dev-5173.log",
+    "dev_5174": "/tmp/dev-5174.log"
+  },
+  "docs_path": "/Users/YOUR_USERNAME/Downloads/local-coder/VM_SETUP_DOCS",
+  "health_check_script": "/Users/YOUR_USERNAME/Downloads/local-coder/VM_SETUP_DOCS/SCRIPTS/health-check.sh",
+  "emergency_reset_script": "/Users/YOUR_USERNAME/Downloads/local-coder/VM_SETUP_DOCS/SCRIPTS/emergency-reset.sh",
+  "verify_setup_script": "/Users/YOUR_USERNAME/Downloads/local-coder/VM_SETUP_DOCS/SCRIPTS/verify-setup.sh"
+}
