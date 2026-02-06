@@ -6,11 +6,14 @@ A comprehensive guide to running [browser-use](https://github.com/browser-use/br
 
 | Option | Best For | Cost | Vision Support |
 |--------|----------|------|----------------|
-| **Gemini 2.0 Flash** | Most users | Free (200 req/day) | Excellent |
+| **Gemini 2.5 Flash** | Most users | Free (250 req/day) | Excellent |
 | **Gemini 2.5 Flash-Lite** | High volume | Free (1000 req/day) | Excellent |
+| **Gemini 3 Flash Preview** | Bleeding edge | Free (limited) | Excellent |
 | **Ollama (local)** | Full privacy | Free | Limited |
 
-**Recommendation**: Use Gemini for better accuracy and native vision. Use Ollama only if you need fully offline operation.
+**Recommendation**: Use Gemini 2.5 Flash for best balance of quality and free quota. Use Ollama only if you need fully offline operation.
+
+> **Note**: Gemini 2.0 Flash is deprecated and will be shut down on March 31, 2026.
 
 ---
 
@@ -21,16 +24,20 @@ A comprehensive guide to running [browser-use](https://github.com/browser-use/br
 - **Native vision**: Built for screenshot-based browser automation
 - **Fast**: ~225ms latency vs seconds for local models
 - **Accurate**: 70%+ accuracy on browser automation benchmarks
-- **Free tier**: 200-1000 requests/day depending on model
+- **Free tier**: 250-1000 requests/day depending on model
 - **No hardware**: No GPU or high RAM needed
 
-### Free Tier Limits
+### Free Tier Limits (as of February 2026)
 
-| Model | Requests/Min | Requests/Day |
-|-------|--------------|--------------|
-| Gemini 2.5 Flash-Lite | 15 | 1,000 |
-| Gemini 2.5 Flash | 10 | 250 |
-| Gemini 2.0 Flash | 15 | 200 |
+| Model | RPM | RPD | TPM |
+|-------|-----|-----|-----|
+| `gemini-2.5-flash-lite` | 15 | 1,000 | 250,000 |
+| `gemini-2.5-flash` | 10 | 250 | 250,000 |
+| `gemini-2.5-pro` | 5 | 100 | 250,000 |
+
+*Limits apply per project (not per API key). Daily quotas reset at midnight Pacific Time.*
+
+> **Note**: December 2025 quota reductions (50-80%) may affect actual limits. Check [AI Studio](https://aistudio.google.com/usage) for your current quota.
 
 ### Setup
 
@@ -54,7 +61,7 @@ from browser_use import Agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 async def run_audit():
-    llm = ChatGoogleGenerativeAI(model="gemini-2.0-flash")
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
     agent = Agent(
         task="Navigate to https://example.com, take a screenshot, and describe what you see",
@@ -76,9 +83,19 @@ if __name__ == "__main__":
 python audit.py
 ```
 
-### Gemini Computer Use (Advanced)
+### Gemini 3 Flash Preview (Experimental)
 
-For native computer use capabilities, use Google's dedicated model:
+For the latest capabilities, try the Gemini 3 Flash Preview:
+
+```python
+llm = ChatGoogleGenerativeAI(model="gemini-3-flash-preview")
+```
+
+> **Warning**: Preview models have stricter rate limits and may change without notice.
+
+### Direct Vision Analysis (No browser-use)
+
+For simpler screenshot analysis without browser automation:
 
 ```python
 from google import genai
@@ -183,7 +200,7 @@ async def audit_checkout():
         4. Screenshot each step
         5. Report any errors or broken elements
         """,
-        llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash"),
+        llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash"),
         use_vision=True,
         generate_gif="checkout_flow.gif",
     )
@@ -202,7 +219,7 @@ async def test_form_validation():
         4. Enter valid data and submit
         5. Report all validation behaviors observed
         """,
-        llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash"),
+        llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash"),
         use_vision=True,
         generate_gif="form_validation.gif",
     )
@@ -225,7 +242,7 @@ async def check_responsive():
         3. Verify text is readable
         4. Report any overflow or layout issues
         """,
-        llm=ChatGoogleGenerativeAI(model="gemini-2.0-flash"),
+        llm=ChatGoogleGenerativeAI(model="gemini-2.5-flash"),
         browser=browser,
         use_vision=True,
         generate_gif="mobile_check.gif",
@@ -304,11 +321,12 @@ docker compose up --build
 - [browser-use GitHub](https://github.com/browser-use/browser-use)
 - [browser-use Documentation](https://docs.browser-use.com)
 - [Google AI Studio](https://aistudio.google.com/) - Get Gemini API key
-- [Gemini Computer Use Guide](https://www.datacamp.com/tutorial/gemini-2-5-computer-use-guide)
+- [Gemini Models Documentation](https://ai.google.dev/gemini-api/docs/models)
 - [Ollama](https://ollama.com)
 
 ---
 
 ## Changelog
 
-- **2025-02**: Updated to recommend Gemini over Ollama for better vision support
+- **2026-02**: Updated to Gemini 2.5 Flash (2.0 Flash deprecated). Added Gemini 3 Flash Preview.
+- **2025-02**: Initial guide with Gemini over Ollama recommendation.
