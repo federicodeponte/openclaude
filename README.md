@@ -9,6 +9,7 @@ A comprehensive Claude Code configuration setup with MCP servers, permissions, a
 - **VM Development Environment** - Configured for remote development
 - **Custom Commands** - AI agents and security scanning tools
 - **Development Guidelines** - Comprehensive coding standards and workflows
+- **In-Depth Guides** - Tutorials for browser automation, testing, and more
 
 ## 📁 Repository Structure
 
@@ -27,6 +28,9 @@ openclaude/
 │   └── security/           # Security scanning commands
 ├── guidelines/
 │   └── CLAUDE.md          # Development guidelines and best practices
+├── guides/
+│   ├── README.md           # Guides index
+│   └── browser-use-local.md # Self-hosted browser automation
 ├── vm-setup/
 │   ├── vm-helpers.sh       # VM helper scripts
 │   └── README.md          # VM setup documentation
@@ -115,6 +119,12 @@ Features:
 - Playwright testing support
 
 See `vm-setup/README.md` for setup instructions.
+
+## 📖 Guides
+
+In-depth tutorials for development workflows:
+
+- **[Browser-Use Local](guides/browser-use-local.md)** - Self-hosted browser automation with Ollama for product audits, UI testing, and screenshot verification. No cloud APIs required.
 
 ## 📋 Development Guidelines
 
